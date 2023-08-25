@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { ObjectType } from '@nestjs/graphql';
 import { User } from 'src/user/user.entity';
 
@@ -7,9 +13,6 @@ import { User } from 'src/user/user.entity';
 export class RealEstates {
   @PrimaryGeneratedColumn('uuid')
   id: string;
-
-  @Column({ type: 'uuid' })
-  user_id: string;
 
   @Column({ type: 'varchar', length: 20 })
   real_estate_type: string;
@@ -30,5 +33,6 @@ export class RealEstates {
   country: string;
 
   @ManyToOne(() => User, (user) => user.real_estates)
+  @JoinColumn({ name: 'user_id' })
   user: User;
 }

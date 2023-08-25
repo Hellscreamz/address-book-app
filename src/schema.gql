@@ -55,3 +55,18 @@ type Query {
   getAllUsers: [UserType!]!
   getAllAddressBookEntries: [AddressBookType!]!
 }
+
+type Mutation {
+  createCar(carInput: CarInput!): CarsType!
+}
+
+input CarInput {
+  user_id: String!
+  model: String!
+  mark: String!
+  engine: String!
+  horse_power: Float!
+  buyed_at: DateTime!
+  price: Float!
+  vehicle_type: String!
+}
