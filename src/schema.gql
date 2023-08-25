@@ -53,6 +53,7 @@ type Query {
   getAllCars: [CarsType!]!
   getAllRealEstates: [RealEstatesType!]!
   getAllUsers: [UserType!]!
+  getCarsByUserID(user_id: String!): UserType!
   getAllAddressBookEntries: [AddressBookType!]!
 }
 
