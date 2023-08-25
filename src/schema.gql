@@ -1,0 +1,57 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type RealEstatesType {
+  id: ID!
+  real_estate_type: String!
+  buyed_at: DateTime!
+  price: Float!
+  square_meters: Float!
+  city: String!
+  country: String!
+  user: UserType!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type UserType {
+  id: ID!
+  first_name: String!
+  last_name: String!
+  mobile_phone: Float!
+  cars: [CarsType!]
+  real_estates: [RealEstatesType!]
+}
+
+type CarsType {
+  id: ID!
+  model: String!
+  mark: String!
+  engine: String!
+  horse_power: Float!
+  buyed_at: DateTime!
+  price: Float!
+  vehicle_type: String!
+  user: UserType!
+}
+
+type AddressBookType {
+  id: ID!
+  address: String!
+  city: String!
+  country: String!
+  email_address: String!
+  zip_code: Float!
+  user: UserType!
+}
+
+type Query {
+  getAllCars: [CarsType!]!
+  getAllRealEstates: [RealEstatesType!]!
+  getAllUsers: [UserType!]!
+  getAllAddressBookEntries: [AddressBookType!]!
+}
