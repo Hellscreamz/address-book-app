@@ -18,9 +18,9 @@ export class User {
   @Column({ type: 'bigint' })
   mobile_phone: number;
 
-  @OneToMany(() => Cars, (car) => car.user)
+  @OneToMany(() => Cars, (car) => car.user, { eager: true })
   cars: Cars[];
 
-  @OneToMany(() => RealEstates, (estate) => estate.user)
+  @OneToMany(() => RealEstates, (estate) => estate.user, { eager: true })
   real_estates: RealEstates[];
 }
