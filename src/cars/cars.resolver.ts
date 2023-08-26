@@ -6,6 +6,7 @@ import { CarsType } from './cars.type';
 import { CarInput } from './cars.type';
 import { UserType } from 'src/user/user.type';
 import { ValidationPipe } from 'src/pipe/validation-pipe';
+import { CarInputUpdateType } from './cars.type';
 
 @Resolver(() => CarsType)
 export class CarsResolver {
@@ -25,5 +26,13 @@ export class CarsResolver {
   @UsePipes(new ValidationPipe())
   async createCar(@Args('carInput') carInput: CarInput): Promise<CarsType> {
     return this.carsService.createCar(carInput);
+  }
+
+  @Mutation(() => CarsType)
+  @UsePipes(new ValidationPipe())
+  async updateCarByUserIdCarId(
+    @Args('carInputUpdateType') carInputUpdateType: CarInputUpdateType,
+  ): Promise<CarsType> {
+    return this.carsService.updateCarByUserIdCarId(carInputUpdateType);
   }
 }

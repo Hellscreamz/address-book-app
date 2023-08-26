@@ -57,3 +57,33 @@ export class CarInput {
   @Field()
   vehicle_type: string;
 }
+
+@InputType()
+export class CarInputUpdateType {
+  @Field()
+  user_id: string;
+
+  @Field()
+  car_id: string;
+
+  @Field({ nullable: true })
+  model: string;
+
+  @Field({ nullable: true })
+  mark: string;
+
+  @Field({ nullable: true })
+  engine: string;
+
+  @Field({ nullable: true })
+  horse_power: number;
+
+  @Field({ nullable: true })
+  bought_at: Date;
+
+  @Field({ nullable: true })
+  price: number;
+
+  @Field({ nullable: true })
+  vehicle_type: string;
+}

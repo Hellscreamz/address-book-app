@@ -5,7 +5,7 @@ import {
   ArgumentMetadata,
 } from '@nestjs/common';
 
-import { validationSchemas } from 'src/validation/request.schemas';
+import { validationSchemas } from 'src/validation/schemas/request.schemas';
 
 @Injectable()
 export class ValidationPipe implements PipeTransform {

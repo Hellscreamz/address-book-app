@@ -59,6 +59,7 @@ type Query {
 
 type Mutation {
   createCar(carInput: CarInput!): CarsType!
+  updateCarByUserIdCarId(carInputUpdateType: CarInputUpdateType!): CarsType!
 }
 
 input CarInput {
@@ -70,4 +71,16 @@ input CarInput {
   bought_at: DateTime!
   price: Float!
   vehicle_type: String!
+}
+
+input CarInputUpdateType {
+  user_id: String!
+  car_id: String!
+  model: String
+  mark: String
+  engine: String
+  horse_power: Float
+  bought_at: DateTime
+  price: Float
+  vehicle_type: String
 }

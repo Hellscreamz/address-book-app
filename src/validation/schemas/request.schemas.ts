@@ -4,7 +4,7 @@ export const CarsValidationSchema = z.object({
   model: z.string().max(20),
   mark: z.string().max(20),
   engine: z.string().max(20),
-  horse_power: z.number().int(),
+  horse_power: z.number().int().positive(),
   bought_at: z.date(),
   price: z.number().positive(),
   vehicle_type: z.string().max(20),
@@ -38,6 +38,18 @@ export const AddressBookValidationSchema = z.object({
   user_id: z.string().uuid(),
 });
 
+export const CarInputUpdateValidationSchema = z.object({
+  user_id: z.string().uuid(),
+  car_id: z.string().uuid(),
+  model: z.string().optional(),
+  mark: z.string().optional(),
+  engine: z.string().optional(),
+  horse_power: z.number().int().positive().optional(),
+  bought_at: z.date().optional(),
+  price: z.number().positive().optional(),
+  vehicle_type: z.string().optional(),
+});
+
 // *IMPORTANT*
 //  The properties in validationSchemas MUST
 //  be equal to the actual class names responsible for input types
@@ -47,4 +59,5 @@ export const validationSchemas: Record<string, ZodTypeAny> = {
   UserInput: UserValidationSchema,
   RealEstatesInput: RealEstatesValidationSchema,
   AddressBookInput: AddressBookValidationSchema,
+  CarInputUpdateType: CarInputUpdateValidationSchema,
 };

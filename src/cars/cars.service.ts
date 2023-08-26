@@ -1,10 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+
 import { Cars } from './cars.entity';
 import { CarInput, CarsType } from './cars.type';
 import { User } from 'src/user/user.entity';
 import { UserType } from 'src/user/user.type';
+import { CarInputUpdateType } from './cars.type';
+import { UserValidationService } from 'src/validation/user/user-validation.service';
 
 @Injectable()
 export class CarsService {
@@ -13,6 +16,7 @@ export class CarsService {
     private carsRepository: Repository<Cars>,
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    private userValidationService: UserValidationService,
   ) {}
 
   async getAllCars(): Promise<Cars[]> {
@@ -20,13 +24,9 @@ export class CarsService {
   }
 
   async createCar(carInput: CarInput): Promise<CarsType> {
-    const user = await this.userRepository.findOne({
-      where: { id: carInput.user_id },
-    });
-
-    if (!user) {
-      throw new Error('User not found');
-    }
+    const user = await this.userValidationService.validateUser(
+      carInput.user_id,
+    );
 
     const newCar = this.carsRepository.create({
       ...carInput,
@@ -45,5 +45,25 @@ export class CarsService {
       where: { id: user_id },
       relations: ['cars'],
     });
+  }
+
+  async updateCarByUserIdCarId(
+    carInputUpdateType: CarInputUpdateType,
+  ): Promise<CarsType> {
+    const user = await this.userValidationService.validateUser(
+      carInputUpdateType.user_id,
+    );
+
+    const updatedCar = await this.carsRepository.findOneOrFail({
+      where: { user, id: carInputUpdateType.car_id },
+    });
+
+    Object.assign(updatedCar, carInputUpdateType);
+
+    const savedCar = await this.carsRepository.save(updatedCar);
+    return {
+      ...savedCar,
+      user: user,
+    };
   }
 }
