@@ -2,6 +2,7 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { CarsService } from './cars.service';
 import { CarsType } from './cars.type';
 import { CarInput } from './cars.type';
+import { UserType } from 'src/user/user.type';
 
 @Resolver(() => CarsType)
 export class CarsResolver {
@@ -10,6 +11,11 @@ export class CarsResolver {
   @Query(() => [CarsType])
   async getAllCars(): Promise<CarsType[]> {
     return this.carsService.getAllCars();
+  }
+
+  @Query(() => UserType)
+  async getCarsByUserID(@Args('user_id') user_id: string): Promise<UserType> {
+    return this.carsService.getCarsByUserID(user_id);
   }
 
   @Mutation(() => CarsType)

@@ -11,9 +11,4 @@ export class UserResolver {
   async getAllUsers(): Promise<UserType[]> {
     return this.userService.getAllUsers();
   }
-
-  @Query(() => UserType)
-  async getCarsByUserID(@Args('user_id') user_id: string): Promise<UserType> {
-    return this.userService.getCarsByUserID(user_id);
-  }
 }
