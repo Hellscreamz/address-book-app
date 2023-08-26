@@ -5,7 +5,7 @@
 type RealEstatesType {
   id: ID!
   real_estate_type: String!
-  buyed_at: DateTime!
+  bought_at: DateTime!
   price: Float!
   square_meters: Float!
   city: String!
@@ -33,7 +33,7 @@ type CarsType {
   mark: String!
   engine: String!
   horse_power: Float!
-  buyed_at: DateTime!
+  bought_at: DateTime!
   price: Float!
   vehicle_type: String!
   user: UserType!
@@ -67,7 +67,7 @@ input CarInput {
   mark: String!
   engine: String!
   horse_power: Float!
-  buyed_at: DateTime!
+  bought_at: DateTime!
   price: Float!
   vehicle_type: String!
 }

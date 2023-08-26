@@ -10,7 +10,7 @@ export class RealEstatesType {
   real_estate_type: string;
 
   @Field()
-  buyed_at: Date;
+  bought_at: Date;
 
   @Field()
   price: number;

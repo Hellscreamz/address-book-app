@@ -4,6 +4,7 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  CreateDateColumn,
 } from 'typeorm';
 import { ObjectType } from '@nestjs/graphql';
 import { User } from 'src/user/user.entity';
@@ -26,8 +27,8 @@ export class Cars {
   @Column({ type: 'int' })
   horse_power: number;
 
-  @Column({ type: 'date' })
-  buyed_at: Date;
+  @CreateDateColumn({ type: 'timestamp' })
+  bought_at: Date;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   price: number;

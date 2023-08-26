@@ -19,7 +19,7 @@ export class CarsType {
   horse_power: number;
 
   @Field()
-  buyed_at: Date;
+  bought_at: Date;
 
   @Field()
   price: number;
@@ -49,7 +49,7 @@ export class CarInput {
   horse_power: number;
 
   @Field()
-  buyed_at: Date;
+  bought_at: Date;
 
   @Field()
   price: number;

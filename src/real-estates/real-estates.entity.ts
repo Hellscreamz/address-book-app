@@ -4,6 +4,7 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  CreateDateColumn,
 } from 'typeorm';
 import { ObjectType } from '@nestjs/graphql';
 import { User } from 'src/user/user.entity';
@@ -17,8 +18,8 @@ export class RealEstates {
   @Column({ type: 'varchar', length: 20 })
   real_estate_type: string;
 
-  @Column({ type: 'date' })
-  buyed_at: Date;
+  @CreateDateColumn({ type: 'timestamp' })
+  bought_at: Date;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   price: number;

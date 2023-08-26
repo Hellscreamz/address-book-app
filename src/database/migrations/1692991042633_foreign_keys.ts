@@ -5,10 +5,10 @@ export class ForeignKeys1692991042633 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
-      `CREATE TABLE "cars" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "user_id" uuid NOT NULL, "model" character varying(20) NOT NULL, "mark" character varying(20) NOT NULL, "engine" character varying(20) NOT NULL, "horse_power" integer NOT NULL, "buyed_at" date NOT NULL, "price" numeric(10,2) NOT NULL, "vehicle_type" character varying(20) NOT NULL, CONSTRAINT "PK_fc218aa84e79b477d55322271b6" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "cars" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "user_id" uuid NOT NULL, "model" character varying(20) NOT NULL, "mark" character varying(20) NOT NULL, "engine" character varying(20) NOT NULL, "horse_power" integer NOT NULL, "bought_at" date NOT NULL, "price" numeric(10,2) NOT NULL, "vehicle_type" character varying(20) NOT NULL, CONSTRAINT "PK_fc218aa84e79b477d55322271b6" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "real_estates" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "user_id" uuid NOT NULL, "real_estate_type" character varying(20) NOT NULL, "buyed_at" date NOT NULL, "price" numeric(10,2) NOT NULL, "square_meters" integer NOT NULL, "city" character varying(30) NOT NULL, "country" character varying(30) NOT NULL, CONSTRAINT "PK_7213408ef49a1b9507bbadd065c" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "real_estates" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "user_id" uuid NOT NULL, "real_estate_type" character varying(20) NOT NULL, "bought_at" date NOT NULL, "price" numeric(10,2) NOT NULL, "square_meters" integer NOT NULL, "city" character varying(30) NOT NULL, "country" character varying(30) NOT NULL, CONSTRAINT "PK_7213408ef49a1b9507bbadd065c" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
       `CREATE TABLE "user" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "first_name" character varying(100) NOT NULL, "last_name" character varying(100) NOT NULL, "mobile_phone" bigint NOT NULL, CONSTRAINT "PK_cace4a159ff9f2512dd42373760" PRIMARY KEY ("id"))`,
