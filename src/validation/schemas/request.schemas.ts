@@ -54,6 +54,15 @@ export const CarInputDeleteType = z.object({
   car_id: z.string().uuid(),
 });
 
+export const AddressCreateInputType = z.object({
+  user_id: z.string().uuid(),
+  address: z.string().max(255),
+  city: z.string().max(30),
+  country: z.string().max(30),
+  email_address: z.string().max(150).email(),
+  zip_code: z.number().int(),
+});
+
 // *IMPORTANT*
 //  The properties in validationSchemas MUST
 //  be equal to the actual class names responsible for input types
@@ -65,4 +74,5 @@ export const validationSchemas: Record<string, ZodTypeAny> = {
   AddressBookInput: AddressBookValidationSchema,
   CarInputUpdateType: CarInputUpdateValidationSchema,
   CarInputDeleteType: CarInputDeleteType,
+  AddressCreateInputType: AddressCreateInputType,
 };
