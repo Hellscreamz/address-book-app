@@ -1,8 +1,11 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { UsePipes } from '@nestjs/common';
+
 import { CarsService } from './cars.service';
 import { CarsType } from './cars.type';
 import { CarInput } from './cars.type';
 import { UserType } from 'src/user/user.type';
+import { ValidationPipe } from 'src/pipe/validation-pipe';
 
 @Resolver(() => CarsType)
 export class CarsResolver {
@@ -19,6 +22,7 @@ export class CarsResolver {
   }
 
   @Mutation(() => CarsType)
+  @UsePipes(new ValidationPipe())
   async createCar(@Args('carInput') carInput: CarInput): Promise<CarsType> {
     return this.carsService.createCar(carInput);
   }
