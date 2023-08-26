@@ -2,11 +2,15 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UsePipes } from '@nestjs/common';
 
 import { CarsService } from './cars.service';
-import { CarsType } from './cars.type';
-import { CarInput } from './cars.type';
+import {
+  CarsType,
+  CarInput,
+  CarInputUpdateType,
+  CarInputDeleteType,
+  CarDeleteType,
+} from './cars.type';
 import { UserType } from 'src/user/user.type';
 import { ValidationPipe } from 'src/pipe/validation-pipe';
-import { CarInputUpdateType } from './cars.type';
 
 @Resolver(() => CarsType)
 export class CarsResolver {
@@ -34,5 +38,13 @@ export class CarsResolver {
     @Args('carInputUpdateType') carInputUpdateType: CarInputUpdateType,
   ): Promise<CarsType> {
     return this.carsService.updateCarByUserIdCarId(carInputUpdateType);
+  }
+
+  @Mutation(() => CarDeleteType)
+  @UsePipes(new ValidationPipe())
+  async deleteCarById(
+    @Args('carInputDeleteType') carInputDeleteType: CarInputDeleteType,
+  ): Promise<CarDeleteType> {
+    return this.carsService.deleteCarById(carInputDeleteType);
   }
 }

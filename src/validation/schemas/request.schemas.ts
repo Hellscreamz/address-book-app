@@ -50,6 +50,10 @@ export const CarInputUpdateValidationSchema = z.object({
   vehicle_type: z.string().optional(),
 });
 
+export const CarInputDeleteType = z.object({
+  car_id: z.string().uuid(),
+});
+
 // *IMPORTANT*
 //  The properties in validationSchemas MUST
 //  be equal to the actual class names responsible for input types
@@ -60,4 +64,5 @@ export const validationSchemas: Record<string, ZodTypeAny> = {
   RealEstatesInput: RealEstatesValidationSchema,
   AddressBookInput: AddressBookValidationSchema,
   CarInputUpdateType: CarInputUpdateValidationSchema,
+  CarInputDeleteType: CarInputDeleteType,
 };

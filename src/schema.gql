@@ -39,6 +39,16 @@ type CarsType {
   user: UserType!
 }
 
+type CarDeleteType {
+  model: String!
+  mark: String!
+  engine: String!
+  horse_power: Float!
+  bought_at: DateTime!
+  price: Float!
+  vehicle_type: String!
+}
+
 type AddressBookType {
   id: ID!
   address: String!
@@ -60,6 +70,7 @@ type Query {
 type Mutation {
   createCar(carInput: CarInput!): CarsType!
   updateCarByUserIdCarId(carInputUpdateType: CarInputUpdateType!): CarsType!
+  deleteCarById(carInputDeleteType: CarInputDeleteType!): CarDeleteType!
 }
 
 input CarInput {
@@ -83,4 +94,8 @@ input CarInputUpdateType {
   bought_at: DateTime
   price: Float
   vehicle_type: String
+}
+
+input CarInputDeleteType {
+  car_id: String!
 }

@@ -3,10 +3,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { Cars } from './cars.entity';
-import { CarInput, CarsType } from './cars.type';
+import {
+  CarInput,
+  CarsType,
+  CarDeleteType,
+  CarInputUpdateType,
+  CarInputDeleteType,
+} from './cars.type';
 import { User } from 'src/user/user.entity';
 import { UserType } from 'src/user/user.type';
-import { CarInputUpdateType } from './cars.type';
 import { UserValidationService } from 'src/validation/user/user-validation.service';
 
 @Injectable()
@@ -65,5 +70,15 @@ export class CarsService {
       ...savedCar,
       user: user,
     };
+  }
+
+  async deleteCarById(
+    carInputDeleteType: CarInputDeleteType,
+  ): Promise<CarDeleteType> {
+    const car = await this.carsRepository.findOneOrFail({
+      where: { id: carInputDeleteType.car_id },
+    });
+    await this.carsRepository.remove(car);
+    return car;
   }
 }
