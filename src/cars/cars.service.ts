@@ -28,13 +28,13 @@ export class CarsService {
     return this.carsRepository.find();
   }
 
-  async createCar(carInput: CreateCarInputType): Promise<CarsType> {
+  async createCar(createCarInputType: CreateCarInputType): Promise<CarsType> {
     const user = await this.userValidationService.validateUser(
-      carInput.user_id,
+      createCarInputType.user_id,
     );
 
     const newCar = this.carsRepository.create({
-      ...carInput,
+      ...createCarInputType,
       user: user,
     });
 
@@ -53,17 +53,17 @@ export class CarsService {
   }
 
   async updateCarByUserIdCarId(
-    carInputUpdateType: UpdateCarInputType,
+    updateCarInputType: UpdateCarInputType,
   ): Promise<CarsType> {
     const user = await this.userValidationService.validateUser(
-      carInputUpdateType.user_id,
+      updateCarInputType.user_id,
     );
 
     const updatedCar = await this.carsRepository.findOneOrFail({
-      where: { user, id: carInputUpdateType.car_id },
+      where: { user, id: updateCarInputType.car_id },
     });
 
-    Object.assign(updatedCar, carInputUpdateType);
+    Object.assign(updatedCar, updateCarInputType);
 
     const savedCar = await this.carsRepository.save(updatedCar);
     return {
@@ -73,10 +73,10 @@ export class CarsService {
   }
 
   async deleteCarById(
-    carInputDeleteType: DeleteCarInputType,
+    deleteCarInputType: DeleteCarInputType,
   ): Promise<CarDeleteType> {
     const car = await this.carsRepository.findOneOrFail({
-      where: { id: carInputDeleteType.car_id },
+      where: { id: deleteCarInputType.car_id },
     });
     await this.carsRepository.remove(car);
     return car;

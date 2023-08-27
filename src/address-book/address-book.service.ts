@@ -7,6 +7,8 @@ import {
   AddressCreateInputType,
   AddressBookType,
   AddressUpdateInputType,
+  DeleteAddressInputType,
+  AddressBookDeleteType,
 } from './address-book.type';
 import { UserValidationService } from 'src/validation/user/user-validation.service';
 @Injectable()
@@ -58,5 +60,20 @@ export class AddressBookService {
       ...savedAddress,
       user,
     };
+  }
+
+  async deleteAddressByUserId(
+    deleteAddressInputType: DeleteAddressInputType,
+  ): Promise<AddressBookDeleteType> {
+    const user = await this.userValidationService.validateUser(
+      deleteAddressInputType.user_id,
+    );
+
+    const address = await this.addressBookRepository.findOneOrFail({
+      where: { user },
+    });
+
+    await this.addressBookRepository.remove(address);
+    return address;
   }
 }

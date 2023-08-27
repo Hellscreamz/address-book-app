@@ -6,6 +6,8 @@ import {
   AddressBookType,
   AddressUpdateInputType,
   AddressCreateInputType,
+  AddressBookDeleteType,
+  DeleteAddressInputType,
 } from './address-book.type';
 import { ValidationPipe } from 'src/pipe/validation-pipe';
 
@@ -34,6 +36,17 @@ export class AddressBookResolver {
   ): Promise<AddressBookType> {
     return this.addressBookService.updateAddressByUserId(
       addressUpdateInputType,
+    );
+  }
+
+  @Mutation(() => AddressBookDeleteType)
+  @UsePipes(new ValidationPipe())
+  async deleteAddressByUserId(
+    @Args('addressDeleteInputType')
+    deleteAddressInputType: DeleteAddressInputType,
+  ): Promise<AddressBookDeleteType> {
+    return this.addressBookService.deleteAddressByUserId(
+      deleteAddressInputType,
     );
   }
 }

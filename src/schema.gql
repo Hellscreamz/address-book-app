@@ -59,6 +59,14 @@ type AddressBookType {
   user: UserType!
 }
 
+type AddressBookDeleteType {
+  address: String!
+  city: String!
+  country: String!
+  email_address: String!
+  zip_code: Float!
+}
+
 type Query {
   getAllCars: [CarsType!]!
   getCarsByUserID(user_id: String!): UserType!
@@ -73,6 +81,7 @@ type Mutation {
   deleteCarById(deleteCarInputType: DeleteCarInputType!): CarDeleteType!
   createAddress(addressInput: AddressCreateInputType!): AddressBookType!
   updateAddressByUserId(addressUpdateInputType: AddressUpdateInputType!): AddressBookType!
+  deleteAddressByUserId(addressDeleteInputType: DeleteAddressInputType!): AddressBookDeleteType!
 }
 
 input CreateCarInputType {
@@ -118,4 +127,8 @@ input AddressUpdateInputType {
   country: String
   email_address: String
   zip_code: Float
+}
+
+input DeleteAddressInputType {
+  user_id: String!
 }

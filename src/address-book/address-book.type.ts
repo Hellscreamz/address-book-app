@@ -66,3 +66,27 @@ export class AddressUpdateInputType {
   @Field({ nullable: true })
   zip_code: number;
 }
+
+@InputType()
+export class DeleteAddressInputType {
+  @Field()
+  user_id: string;
+}
+
+@ObjectType()
+export class AddressBookDeleteType {
+  @Field()
+  address: string;
+
+  @Field()
+  city: string;
+
+  @Field()
+  country: string;
+
+  @Field()
+  email_address: string;
+
+  @Field()
+  zip_code: number;
+}
