@@ -72,6 +72,7 @@ type Mutation {
   updateCarByUserIdCarId(carInputUpdateType: CarInputUpdateType!): CarsType!
   deleteCarById(carInputDeleteType: CarInputDeleteType!): CarDeleteType!
   createAddress(addressInput: AddressCreateInputType!): AddressBookType!
+  updateAddressByUserId(addressUpdateInputType: AddressUpdateInputType!): AddressBookType!
 }
 
 input CarInput {
@@ -108,4 +109,13 @@ input AddressCreateInputType {
   country: String!
   email_address: String!
   zip_code: Float!
+}
+
+input AddressUpdateInputType {
+  user_id: String!
+  address: String
+  city: String
+  country: String
+  email_address: String
+  zip_code: Float
 }

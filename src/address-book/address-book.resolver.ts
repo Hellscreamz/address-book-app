@@ -2,8 +2,11 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UsePipes } from '@nestjs/common';
 
 import { AddressBookService } from './address-book.service';
-import { AddressBookType } from './address-book.type';
-import { AddressCreateInputType } from './address-book.type';
+import {
+  AddressBookType,
+  AddressUpdateInputType,
+  AddressCreateInputType,
+} from './address-book.type';
 import { ValidationPipe } from 'src/pipe/validation-pipe';
 
 @Resolver(() => AddressBookType)
@@ -21,5 +24,16 @@ export class AddressBookResolver {
     @Args('addressInput') addressInput: AddressCreateInputType,
   ): Promise<AddressBookType> {
     return this.addressBookService.createAddress(addressInput);
+  }
+
+  @Mutation(() => AddressBookType)
+  @UsePipes(new ValidationPipe())
+  async updateAddressByUserId(
+    @Args('addressUpdateInputType')
+    addressUpdateInputType: AddressUpdateInputType,
+  ): Promise<AddressBookType> {
+    return this.addressBookService.updateAddressByUserId(
+      addressUpdateInputType,
+    );
   }
 }

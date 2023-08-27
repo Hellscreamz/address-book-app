@@ -45,3 +45,24 @@ export class AddressCreateInputType {
   @Field()
   zip_code: number;
 }
+
+@InputType()
+export class AddressUpdateInputType {
+  @Field()
+  user_id: string;
+
+  @Field({ nullable: true })
+  address: string;
+
+  @Field({ nullable: true })
+  city: string;
+
+  @Field({ nullable: true })
+  country: string;
+
+  @Field({ nullable: true })
+  email_address: string;
+
+  @Field({ nullable: true })
+  zip_code: number;
+}
