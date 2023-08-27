@@ -1,6 +1,6 @@
 import { z, ZodTypeAny } from 'zod';
 
-export const CarsValidationSchema = z.object({
+export const CreateCarInputType = z.object({
   model: z.string().max(20),
   mark: z.string().max(20),
   engine: z.string().max(20),
@@ -11,34 +11,7 @@ export const CarsValidationSchema = z.object({
   user_id: z.string().uuid(),
 });
 
-export const RealEstatesValidationSchema = z.object({
-  real_estate_type: z.string().max(20),
-  bought_at: z.date(),
-  price: z.number().positive(),
-  square_meters: z.number().int(),
-  city: z.string().max(30),
-  country: z.string().max(30),
-  user_id: z.string().uuid(),
-});
-
-export const UserValidationSchema = z.object({
-  first_name: z.string().max(100),
-  last_name: z.string().max(100),
-  mobile_phone: z.bigint(),
-  cars: z.array(CarsValidationSchema),
-  real_estates: z.array(RealEstatesValidationSchema),
-});
-
-export const AddressBookValidationSchema = z.object({
-  address: z.string().max(255),
-  city: z.string().max(30),
-  country: z.string().max(30),
-  email_address: z.string().max(150).email(),
-  zip_code: z.number().int(),
-  user_id: z.string().uuid(),
-});
-
-export const CarInputUpdateValidationSchema = z.object({
+export const UpdateCarInputType = z.object({
   user_id: z.string().uuid(),
   car_id: z.string().uuid(),
   model: z.string().optional(),
@@ -50,7 +23,7 @@ export const CarInputUpdateValidationSchema = z.object({
   vehicle_type: z.string().optional(),
 });
 
-export const CarInputDeleteType = z.object({
+export const DeleteCarInputType = z.object({
   car_id: z.string().uuid(),
 });
 
@@ -77,12 +50,9 @@ export const AddressUpdateInputType = z.object({
 //  be equal to the actual class names responsible for input types
 
 export const validationSchemas: Record<string, ZodTypeAny> = {
-  CarInput: CarsValidationSchema,
-  UserInput: UserValidationSchema,
-  RealEstatesInput: RealEstatesValidationSchema,
-  AddressBookInput: AddressBookValidationSchema,
-  CarInputUpdateType: CarInputUpdateValidationSchema,
-  CarInputDeleteType: CarInputDeleteType,
+  CreateCarInputType: CreateCarInputType,
+  UpdateCarInputType: UpdateCarInputType,
+  DeleteCarInputType: DeleteCarInputType,
   AddressCreateInputType: AddressCreateInputType,
   AddressUpdateInputType: AddressUpdateInputType,
 };

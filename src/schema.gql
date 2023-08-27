@@ -68,14 +68,14 @@ type Query {
 }
 
 type Mutation {
-  createCar(carInput: CarInput!): CarsType!
-  updateCarByUserIdCarId(carInputUpdateType: CarInputUpdateType!): CarsType!
-  deleteCarById(carInputDeleteType: CarInputDeleteType!): CarDeleteType!
+  createCar(createCarInputType: CreateCarInputType!): CarsType!
+  updateCarByUserIdCarId(updateCarInputType: UpdateCarInputType!): CarsType!
+  deleteCarById(deleteCarInputType: DeleteCarInputType!): CarDeleteType!
   createAddress(addressInput: AddressCreateInputType!): AddressBookType!
   updateAddressByUserId(addressUpdateInputType: AddressUpdateInputType!): AddressBookType!
 }
 
-input CarInput {
+input CreateCarInputType {
   user_id: String!
   model: String!
   mark: String!
@@ -86,7 +86,7 @@ input CarInput {
   vehicle_type: String!
 }
 
-input CarInputUpdateType {
+input UpdateCarInputType {
   user_id: String!
   car_id: String!
   model: String
@@ -98,7 +98,7 @@ input CarInputUpdateType {
   vehicle_type: String
 }
 
-input CarInputDeleteType {
+input DeleteCarInputType {
   car_id: String!
 }
 

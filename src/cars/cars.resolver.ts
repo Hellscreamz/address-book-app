@@ -4,9 +4,9 @@ import { UsePipes } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import {
   CarsType,
-  CarInput,
-  CarInputUpdateType,
-  CarInputDeleteType,
+  CreateCarInputType,
+  UpdateCarInputType,
+  DeleteCarInputType,
   CarDeleteType,
 } from './cars.type';
 import { UserType } from 'src/user/user.type';
@@ -28,14 +28,16 @@ export class CarsResolver {
 
   @Mutation(() => CarsType)
   @UsePipes(new ValidationPipe())
-  async createCar(@Args('carInput') carInput: CarInput): Promise<CarsType> {
+  async createCar(
+    @Args('createCarInputType') carInput: CreateCarInputType,
+  ): Promise<CarsType> {
     return this.carsService.createCar(carInput);
   }
 
   @Mutation(() => CarsType)
   @UsePipes(new ValidationPipe())
   async updateCarByUserIdCarId(
-    @Args('carInputUpdateType') carInputUpdateType: CarInputUpdateType,
+    @Args('updateCarInputType') carInputUpdateType: UpdateCarInputType,
   ): Promise<CarsType> {
     return this.carsService.updateCarByUserIdCarId(carInputUpdateType);
   }
@@ -43,7 +45,7 @@ export class CarsResolver {
   @Mutation(() => CarDeleteType)
   @UsePipes(new ValidationPipe())
   async deleteCarById(
-    @Args('carInputDeleteType') carInputDeleteType: CarInputDeleteType,
+    @Args('deleteCarInputType') carInputDeleteType: DeleteCarInputType,
   ): Promise<CarDeleteType> {
     return this.carsService.deleteCarById(carInputDeleteType);
   }

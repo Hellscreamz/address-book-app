@@ -32,7 +32,7 @@ export class CarsType {
 }
 
 @InputType()
-export class CarInput {
+export class CreateCarInputType {
   @Field()
   user_id: string;
 
@@ -59,7 +59,7 @@ export class CarInput {
 }
 
 @InputType()
-export class CarInputUpdateType {
+export class UpdateCarInputType {
   @Field()
   user_id: string;
 
@@ -89,7 +89,7 @@ export class CarInputUpdateType {
 }
 
 @InputType()
-export class CarInputDeleteType {
+export class DeleteCarInputType {
   @Field()
   car_id: string;
 }

@@ -4,11 +4,11 @@ import { Repository } from 'typeorm';
 
 import { Cars } from './cars.entity';
 import {
-  CarInput,
+  CreateCarInputType,
   CarsType,
   CarDeleteType,
-  CarInputUpdateType,
-  CarInputDeleteType,
+  UpdateCarInputType,
+  DeleteCarInputType,
 } from './cars.type';
 import { User } from 'src/user/user.entity';
 import { UserType } from 'src/user/user.type';
@@ -28,7 +28,7 @@ export class CarsService {
     return this.carsRepository.find();
   }
 
-  async createCar(carInput: CarInput): Promise<CarsType> {
+  async createCar(carInput: CreateCarInputType): Promise<CarsType> {
     const user = await this.userValidationService.validateUser(
       carInput.user_id,
     );
@@ -53,7 +53,7 @@ export class CarsService {
   }
 
   async updateCarByUserIdCarId(
-    carInputUpdateType: CarInputUpdateType,
+    carInputUpdateType: UpdateCarInputType,
   ): Promise<CarsType> {
     const user = await this.userValidationService.validateUser(
       carInputUpdateType.user_id,
@@ -73,7 +73,7 @@ export class CarsService {
   }
 
   async deleteCarById(
-    carInputDeleteType: CarInputDeleteType,
+    carInputDeleteType: DeleteCarInputType,
   ): Promise<CarDeleteType> {
     const car = await this.carsRepository.findOneOrFail({
       where: { id: carInputDeleteType.car_id },
