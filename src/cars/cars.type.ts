@@ -119,7 +119,7 @@ export class CarDeleteType {
 }
 
 @InputType()
-export class GetCarsByIdInputType {
+export class FindCarsByIdInputType {
   @Field()
   user_id: string;
 }

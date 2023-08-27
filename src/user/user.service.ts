@@ -27,7 +27,7 @@ export class UserService {
 
   async findUserById(findUserByIdInput: FindUserByIdInput): Promise<User> {
     const user = await this.userValidationService.validateUser(
-      findUserByIdInput.id,
+      findUserByIdInput.user_id,
     );
     return this.userRepository.findOne({
       where: { id: user.id },

@@ -9,7 +9,7 @@ import { DatabaseModule } from 'src/database/database.module';
 import { UserValidationModule } from 'src/validation/user/user-validation.module';
 import { AuthInterceptor } from 'src/interceptor/auth-intercetor';
 import { JWTModule } from 'src/token/jwt.module';
-import { ConfigModule } from '../config/config.module';
+import { ConfigModule } from '../../config/config.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';

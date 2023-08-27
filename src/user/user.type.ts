@@ -38,5 +38,5 @@ export class CreateUserInputType {
 @InputType()
 export class FindUserByIdInput {
   @Field()
-  id: string;
+  user_id: string;
 }

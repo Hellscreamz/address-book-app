@@ -8,7 +8,7 @@ import {
   UpdateCarInputType,
   DeleteCarInputType,
   CarDeleteType,
-  GetCarsByIdInputType,
+  FindCarsByIdInputType,
 } from './cars.type';
 import { UserType } from 'src/user/user.type';
 import { ValidationPipe } from 'src/pipe/validation-pipe';
@@ -24,10 +24,10 @@ export class CarsResolver {
 
   @Query(() => UserType)
   @UsePipes(new ValidationPipe())
-  async getCarsByUserID(
-    @Args('getCarsByIdInputType') getCarsByIdInputType: GetCarsByIdInputType,
+  async findCarsByUserID(
+    @Args('findCarsByIdInputType') findCarsByIdInputType: FindCarsByIdInputType,
   ): Promise<UserType> {
-    return this.carsService.getCarsByUserID(getCarsByIdInputType);
+    return this.carsService.findCarsByUserID(findCarsByIdInputType);
   }
 
   @Mutation(() => CarsType)

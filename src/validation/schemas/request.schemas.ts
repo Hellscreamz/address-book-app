@@ -1,4 +1,5 @@
 import { z, ZodTypeAny } from 'zod';
+import { UserIdValidation } from 'src/shared/global/user-id-validation';
 
 export const CreateCarInputType = z.object({
   model: z.string().max(20),
@@ -45,22 +46,10 @@ export const AddressUpdateInputType = z.object({
   zip_code: z.number().int().optional(),
 });
 
-export const DeleteAddressInputType = z.object({
-  user_id: z.string().uuid(),
-});
-
 export const CreateUserInputType = z.object({
   first_name: z.string(),
   last_name: z.string(),
   mobile_phone: z.number().int(),
-});
-
-export const FindUserByIdInput = z.object({
-  id: z.string().uuid(),
-});
-
-export const GetCarsByIdInputType = z.object({
-  user_id: z.string().uuid(),
 });
 
 // *IMPORTANT*
@@ -73,8 +62,8 @@ export const validationSchemas: Record<string, ZodTypeAny> = {
   DeleteCarInputType: DeleteCarInputType,
   AddressCreateInputType: AddressCreateInputType,
   AddressUpdateInputType: AddressUpdateInputType,
-  DeleteAddressInputType: DeleteAddressInputType,
+  DeleteAddressInputType: UserIdValidation,
   CreateUserInputType: CreateUserInputType,
-  FindUserByIdInput: FindUserByIdInput,
-  GetCarsByIdInputType: GetCarsByIdInputType,
+  FindUserByIdInput: UserIdValidation,
+  FindCarsByIdInputType: UserIdValidation,
 };
