@@ -72,16 +72,23 @@ type Query {
   getCarsByUserID(user_id: String!): UserType!
   getAllRealEstates: [RealEstatesType!]!
   getAllUsers: [UserType!]!
+  findUserById(findUserByIdInput: FindUserByIdInput!): UserType!
   getAllAddressBookEntries: [AddressBookType!]!
+}
+
+input FindUserByIdInput {
+  id: String!
 }
 
 type Mutation {
   createCar(createCarInputType: CreateCarInputType!): CarsType!
   updateCarByUserIdCarId(updateCarInputType: UpdateCarInputType!): CarsType!
   deleteCarById(deleteCarInputType: DeleteCarInputType!): CarDeleteType!
+  createUser(input: CreateUserInputType!): UserType!
   createAddress(addressInput: AddressCreateInputType!): AddressBookType!
   updateAddressByUserId(addressUpdateInputType: AddressUpdateInputType!): AddressBookType!
   deleteAddressByUserId(addressDeleteInputType: DeleteAddressInputType!): AddressBookDeleteType!
+  loginUser(user_id: LoginUserInputType!): String!
 }
 
 input CreateCarInputType {
@@ -111,6 +118,12 @@ input DeleteCarInputType {
   car_id: String!
 }
 
+input CreateUserInputType {
+  first_name: String!
+  last_name: String!
+  mobile_phone: Int!
+}
+
 input AddressCreateInputType {
   user_id: String!
   address: String!
@@ -130,5 +143,9 @@ input AddressUpdateInputType {
 }
 
 input DeleteAddressInputType {
+  user_id: String!
+}
+
+input LoginUserInputType {
   user_id: String!
 }

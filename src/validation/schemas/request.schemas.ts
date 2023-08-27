@@ -49,6 +49,15 @@ export const DeleteAddressInputType = z.object({
   user_id: z.string().uuid(),
 });
 
+export const CreateUserInputType = z.object({
+  first_name: z.string(),
+  last_name: z.string(),
+  mobile_phone: z.number().int(),
+});
+
+export const FindUserByIdInput = z.object({
+  id: z.string().uuid(),
+});
 // *IMPORTANT*
 //  The properties in validationSchemas MUST
 //  be equal to the actual class names responsible for input types
@@ -60,4 +69,6 @@ export const validationSchemas: Record<string, ZodTypeAny> = {
   AddressCreateInputType: AddressCreateInputType,
   AddressUpdateInputType: AddressUpdateInputType,
   DeleteAddressInputType: DeleteAddressInputType,
+  CreateUserInputType: CreateUserInputType,
+  FindUserByIdInput: FindUserByIdInput,
 };
