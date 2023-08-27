@@ -58,6 +58,11 @@ export const CreateUserInputType = z.object({
 export const FindUserByIdInput = z.object({
   id: z.string().uuid(),
 });
+
+export const GetCarsByIdInputType = z.object({
+  user_id: z.string().uuid(),
+});
+
 // *IMPORTANT*
 //  The properties in validationSchemas MUST
 //  be equal to the actual class names responsible for input types
@@ -71,4 +76,5 @@ export const validationSchemas: Record<string, ZodTypeAny> = {
   DeleteAddressInputType: DeleteAddressInputType,
   CreateUserInputType: CreateUserInputType,
   FindUserByIdInput: FindUserByIdInput,
+  GetCarsByIdInputType: GetCarsByIdInputType,
 };

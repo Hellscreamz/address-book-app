@@ -117,3 +117,9 @@ export class CarDeleteType {
   @Field()
   vehicle_type: string;
 }
+
+@InputType()
+export class GetCarsByIdInputType {
+  @Field()
+  user_id: string;
+}

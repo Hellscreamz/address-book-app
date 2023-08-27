@@ -69,11 +69,15 @@ type AddressBookDeleteType {
 
 type Query {
   getAllCars: [CarsType!]!
-  getCarsByUserID(user_id: String!): UserType!
+  getCarsByUserID(getCarsByIdInputType: GetCarsByIdInputType!): UserType!
   getAllRealEstates: [RealEstatesType!]!
   getAllUsers: [UserType!]!
   findUserById(findUserByIdInput: FindUserByIdInput!): UserType!
   getAllAddressBookEntries: [AddressBookType!]!
+}
+
+input GetCarsByIdInputType {
+  user_id: String!
 }
 
 input FindUserByIdInput {

@@ -9,6 +9,7 @@ import {
   CarDeleteType,
   UpdateCarInputType,
   DeleteCarInputType,
+  GetCarsByIdInputType,
 } from './cars.type';
 import { User } from 'src/user/user.entity';
 import { UserType } from 'src/user/user.type';
@@ -45,9 +46,14 @@ export class CarsService {
     };
   }
 
-  async getCarsByUserID(user_id: string): Promise<UserType> {
+  async getCarsByUserID(
+    getCarsByIdInputType: GetCarsByIdInputType,
+  ): Promise<UserType> {
+    const user = await this.userValidationService.validateUser(
+      getCarsByIdInputType.user_id,
+    );
     return this.userRepository.findOne({
-      where: { id: user_id },
+      where: { id: user.id },
       relations: ['cars'],
     });
   }
