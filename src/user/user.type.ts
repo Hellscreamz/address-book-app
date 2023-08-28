@@ -40,3 +40,18 @@ export class FindUserByIdInput {
   @Field()
   user_id: string;
 }
+
+@InputType()
+export class UpdateUserInputType {
+  @Field()
+  user_id: string;
+
+  @Field({ nullable: true })
+  first_name: string;
+
+  @Field({ nullable: true })
+  last_name: string;
+
+  @Field(() => Int, { nullable: true })
+  mobile_phone: number;
+}

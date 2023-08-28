@@ -2,7 +2,7 @@ import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { UsePipes } from '@nestjs/common';
 
 import { UserService } from './user.service';
-import { UserType, FindUserByIdInput } from './user.type';
+import { UserType, FindUserByIdInput, UpdateUserInputType } from './user.type';
 import { CreateUserInputType } from './user.type';
 import { ValidationPipe } from 'src/pipe/validation-pipe';
 
@@ -29,5 +29,22 @@ export class UserResolver {
     @Args('input') input: CreateUserInputType,
   ): Promise<UserType> {
     return this.userService.createUser(input);
+  }
+
+  @Mutation(() => UserType)
+  @UsePipes(new ValidationPipe())
+  async updateUser(
+    @Args('updateUserInput') updateUserInput: UpdateUserInputType,
+  ): Promise<UserType> {
+    return this.userService.updateUser(updateUserInput);
+  }
+
+  @Mutation(() => UserType)
+  @UsePipes(new ValidationPipe())
+  async deleteUser(
+    @Args('user_id') findUserByIdInput: FindUserByIdInput,
+  ): Promise<UserType> {
+    const deletedUser = await this.userService.deleteUser(findUserByIdInput);
+    return deletedUser;
   }
 }
