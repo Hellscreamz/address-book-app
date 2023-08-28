@@ -1,6 +1,6 @@
-# Address Book Application
+# Pulse Properties Application
 
-This is a simple Address Book application built with NestJS, GraphQL, and TypeORM (PostgreSQL).
+This is a simple Pulse Properties application built with NestJS, GraphQL, and TypeORM (PostgreSQL).
 
 ## Table of Contents
 
@@ -19,9 +19,9 @@ This is a simple Address Book application built with NestJS, GraphQL, and TypeOR
 ### Installation
 
 1. Clone this repository to your local machine:
-   git clone https://github.com/your-username/address-book-app.git
+   git clone https://github.com/your-username/pulse-properties.git
 
-2. cd address-book-app
+2. cd pulse-properties
 
 3. npm install
 
