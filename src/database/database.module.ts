@@ -1,25 +1,32 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataSource, DataSourceOptions } from 'typeorm';
+import { DataSourceOptions } from 'typeorm';
+import { ConfigService } from '@nestjs/config'; // Import ConfigService
 
-const dataSourceOptions: DataSourceOptions = {
-  type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'postgres',
-  password: '1234',
-  database: 'address-book-app',
-  entities: ['dist/**/*.entity.js'],
-  migrations: ['dist/database/migrations/*.js'],
-  synchronize: true,
+const createDataSourceOptions = async (
+  configService: ConfigService,
+): Promise<DataSourceOptions> => {
+  return {
+    type: 'postgres',
+    host: configService.get<string>('DATABASE_HOST'),
+    port: configService.get<number>('DATABASE_PORT'),
+    username: configService.get<string>('DATABASE_USERNAME'),
+    password: configService.get<string>('DATABASE_PASSWORD'),
+    database: configService.get<string>('DATABASE_NAME'),
+    entities: ['dist/**/*.entity.js'],
+    migrations: ['dist/database/migrations/*.js'],
+    synchronize: true, // false for production
+  };
 };
 
-export const dataSource = new DataSource(dataSourceOptions);
-
 @Module({
-  imports: [TypeOrmModule.forRoot(dataSourceOptions)],
+  imports: [
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) =>
+        await createDataSourceOptions(configService),
+    }),
+  ],
   exports: [TypeOrmModule],
 })
-export class DatabaseModule {
-  static dataSource = dataSource;
-}
+export class DatabaseModule {}
