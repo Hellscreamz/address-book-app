@@ -23,7 +23,7 @@ export class AddressBookResolver {
   @Mutation(() => AddressBookType)
   @UsePipes(new ValidationPipe())
   async createAddress(
-    @Args('addressInput') addressInput: AddressCreateInputType,
+    @Args('input') addressInput: AddressCreateInputType,
   ): Promise<AddressBookType> {
     return this.addressBookService.createAddress(addressInput);
   }
@@ -31,7 +31,7 @@ export class AddressBookResolver {
   @Mutation(() => AddressBookType)
   @UsePipes(new ValidationPipe())
   async updateAddressByUserId(
-    @Args('addressUpdateInputType')
+    @Args('input')
     addressUpdateInputType: AddressUpdateInputType,
   ): Promise<AddressBookType> {
     return this.addressBookService.updateAddressByUserId(
@@ -42,7 +42,7 @@ export class AddressBookResolver {
   @Mutation(() => AddressBookDeleteType)
   @UsePipes(new ValidationPipe())
   async deleteAddressByUserId(
-    @Args('addressDeleteInputType')
+    @Args('input')
     deleteAddressInputType: DeleteAddressInputType,
   ): Promise<AddressBookDeleteType> {
     return this.addressBookService.deleteAddressByUserId(

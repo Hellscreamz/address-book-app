@@ -27,20 +27,14 @@ export class AddressBookService {
   async createAddress(
     addressInput: AddressCreateInputType,
   ): Promise<AddressBookType> {
-    const user = await this.userValidationService.validateUser(
-      addressInput.user_id,
-    );
-
+    const { user_id, ...restAddressInput } = addressInput;
+    const user = await this.userValidationService.validateUser(user_id);
     const newAddress = this.addressBookRepository.create({
-      ...addressInput,
-      user: user,
+      ...restAddressInput,
+      user,
     });
 
-    const savedAddress = await this.addressBookRepository.save(newAddress);
-    return {
-      ...savedAddress,
-      user,
-    };
+    return this.addressBookRepository.save(newAddress);
   }
 
   async updateAddressByUserId(
@@ -53,7 +47,6 @@ export class AddressBookService {
     const updatedAddress = await this.addressBookRepository.findOneOrFail({
       where: { user },
     });
-
     Object.assign(updatedAddress, addressInputUpdateType);
 
     const savedAddress = await this.addressBookRepository.save(updatedAddress);

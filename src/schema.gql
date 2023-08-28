@@ -69,7 +69,7 @@ type AddressBookDeleteType {
 
 type Query {
   getAllCars: [CarsType!]!
-  findCarsByUserID(findCarsByIdInputType: FindCarsByIdInputType!): UserType!
+  findCarsByUserID(input: FindCarsByIdInputType!): UserType!
   getAllRealEstates: [RealEstatesType!]!
   findRealEstateByUserId(input: FindRealEstateByUserIdInputType!): RealEstatesType!
   getAllUsers: [UserType!]!
@@ -90,18 +90,18 @@ input FindUserByIdInput {
 }
 
 type Mutation {
-  createCar(createCarInputType: CreateCarInputType!): CarsType!
-  updateCarByUserIdCarId(updateCarInputType: UpdateCarInputType!): CarsType!
-  deleteCarById(deleteCarInputType: DeleteCarInputType!): CarDeleteType!
+  createCar(input: CreateCarInputType!): CarsType!
+  updateCarByUserIdCarId(input: UpdateCarInputType!): CarsType!
+  deleteCarById(input: DeleteCarInputType!): CarDeleteType!
   createRealEstate(input: CreateRealEstateInputType!): RealEstatesType!
   updateRealEstate(input: UpdateRealEstateInputType!): RealEstatesType!
   deleteRealEstate(input: DeleteRealEstateInputType!): RealEstatesType!
   createUser(input: CreateUserInputType!): UserType!
   updateUser(updateUserInput: UpdateUserInputType!): UserType!
   deleteUser(user_id: FindUserByIdInput!): UserType!
-  createAddress(addressInput: AddressCreateInputType!): AddressBookType!
-  updateAddressByUserId(addressUpdateInputType: AddressUpdateInputType!): AddressBookType!
-  deleteAddressByUserId(addressDeleteInputType: DeleteAddressInputType!): AddressBookDeleteType!
+  createAddress(input: AddressCreateInputType!): AddressBookType!
+  updateAddressByUserId(input: AddressUpdateInputType!): AddressBookType!
+  deleteAddressByUserId(input: DeleteAddressInputType!): AddressBookDeleteType!
   loginUser(user_id: LoginUserInputType!): String!
 }
 

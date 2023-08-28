@@ -25,7 +25,7 @@ export class CarsResolver {
   @Query(() => UserType)
   @UsePipes(new ValidationPipe())
   async findCarsByUserID(
-    @Args('findCarsByIdInputType') findCarsByIdInputType: FindCarsByIdInputType,
+    @Args('input') findCarsByIdInputType: FindCarsByIdInputType,
   ): Promise<UserType> {
     return this.carsService.findCarsByUserID(findCarsByIdInputType);
   }
@@ -33,7 +33,7 @@ export class CarsResolver {
   @Mutation(() => CarsType)
   @UsePipes(new ValidationPipe())
   async createCar(
-    @Args('createCarInputType') carInput: CreateCarInputType,
+    @Args('input') carInput: CreateCarInputType,
   ): Promise<CarsType> {
     return this.carsService.createCar(carInput);
   }
@@ -41,7 +41,7 @@ export class CarsResolver {
   @Mutation(() => CarsType)
   @UsePipes(new ValidationPipe())
   async updateCarByUserIdCarId(
-    @Args('updateCarInputType') carInputUpdateType: UpdateCarInputType,
+    @Args('input') carInputUpdateType: UpdateCarInputType,
   ): Promise<CarsType> {
     return this.carsService.updateCarByUserIdCarId(carInputUpdateType);
   }
@@ -49,7 +49,7 @@ export class CarsResolver {
   @Mutation(() => CarDeleteType)
   @UsePipes(new ValidationPipe())
   async deleteCarById(
-    @Args('deleteCarInputType') carInputDeleteType: DeleteCarInputType,
+    @Args('input') carInputDeleteType: DeleteCarInputType,
   ): Promise<CarDeleteType> {
     return this.carsService.deleteCarById(carInputDeleteType);
   }

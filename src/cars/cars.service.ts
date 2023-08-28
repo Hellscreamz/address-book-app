@@ -30,20 +30,13 @@ export class CarsService {
   }
 
   async createCar(createCarInputType: CreateCarInputType): Promise<CarsType> {
-    const user = await this.userValidationService.validateUser(
-      createCarInputType.user_id,
-    );
-
+    const { user_id, ...restCarInput } = createCarInputType;
+    const user = await this.userValidationService.validateUser(user_id);
     const newCar = this.carsRepository.create({
-      ...createCarInputType,
-      user: user,
+      ...restCarInput,
+      user,
     });
-
-    const savedCar = await this.carsRepository.save(newCar);
-    return {
-      ...savedCar,
-      user: user,
-    };
+    return this.carsRepository.save(newCar);
   }
 
   async findCarsByUserID(
@@ -68,7 +61,6 @@ export class CarsService {
     const updatedCar = await this.carsRepository.findOneOrFail({
       where: { user, id: updateCarInputType.car_id },
     });
-
     Object.assign(updatedCar, updateCarInputType);
 
     const savedCar = await this.carsRepository.save(updatedCar);

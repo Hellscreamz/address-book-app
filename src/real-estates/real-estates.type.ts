@@ -106,11 +106,11 @@ export class UpdateRealEstateInputType {
 @InputType()
 export class FindRealEstateByUserIdInputType {
   @Field()
-  user_id: string; // ID of the real estate to delete
+  user_id: string;
 }
 
 @InputType()
 export class DeleteRealEstateInputType {
   @Field()
-  real_estate_id: string; // ID of the real estate to delete
+  real_estate_id: string;
 }

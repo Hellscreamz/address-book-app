@@ -57,7 +57,6 @@ export class RealEstatesService {
     const updatedRealEstate = await this.realEstatesRepository.findOneOrFail({
       where: { user, id: updateRealEstateInput.real_estate_id },
     });
-
     Object.assign(updatedRealEstate, updateRealEstateInput);
 
     const savedRealEstate = await this.realEstatesRepository.save(
