@@ -59,6 +59,35 @@ export const UpdateUserInputType = z.object({
   mobile_phone: z.number().int().optional(),
 });
 
+const CreateRealEstateInputType = z.object({
+  real_estate_type: z.string(),
+  bought_at: z.date(),
+  price: z.number(),
+  square_meters: z.number().int(),
+  city: z.string(),
+  country: z.string(),
+  user_id: z.string().uuid(),
+});
+
+const UpdateRealEstateInputType = z.object({
+  user_id: z.string().uuid(),
+  real_estate_id: z.string().uuid(),
+  real_estate_type: z.string().optional(),
+  bought_at: z.date().optional(),
+  price: z.number().optional(),
+  square_meters: z.number().int().optional(),
+  city: z.string().optional(),
+  country: z.string().optional(),
+});
+
+const FindRealEstateByUserIdInputType = z.object({
+  user_id: z.string(),
+});
+
+const DeleteRealEstateInputType = z.object({
+  real_estate_id: z.string(),
+});
+
 // *IMPORTANT*
 //  The properties in validationSchemas MUST
 //  be equal to the actual class names responsible for input types
@@ -74,4 +103,8 @@ export const validationSchemas: Record<string, ZodTypeAny> = {
   FindUserByIdInput: UserIdValidation,
   FindCarsByIdInputType: UserIdValidation,
   UpdateUserInputType: UpdateUserInputType,
+  CreateRealEstateInputType: CreateRealEstateInputType,
+  UpdateRealEstateInputType: UpdateRealEstateInputType,
+  FindRealEstateByUserIdInputType: FindRealEstateByUserIdInputType,
+  DeleteRealEstateInputType: DeleteRealEstateInputType,
 };

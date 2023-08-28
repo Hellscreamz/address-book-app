@@ -71,12 +71,17 @@ type Query {
   getAllCars: [CarsType!]!
   findCarsByUserID(findCarsByIdInputType: FindCarsByIdInputType!): UserType!
   getAllRealEstates: [RealEstatesType!]!
+  findRealEstateByUserId(input: FindRealEstateByUserIdInputType!): RealEstatesType!
   getAllUsers: [UserType!]!
   findUserById(findUserByIdInput: FindUserByIdInput!): UserType!
   getAllAddressBookEntries: [AddressBookType!]!
 }
 
 input FindCarsByIdInputType {
+  user_id: String!
+}
+
+input FindRealEstateByUserIdInputType {
   user_id: String!
 }
 
@@ -88,6 +93,9 @@ type Mutation {
   createCar(createCarInputType: CreateCarInputType!): CarsType!
   updateCarByUserIdCarId(updateCarInputType: UpdateCarInputType!): CarsType!
   deleteCarById(deleteCarInputType: DeleteCarInputType!): CarDeleteType!
+  createRealEstate(input: CreateRealEstateInputType!): RealEstatesType!
+  updateRealEstate(input: UpdateRealEstateInputType!): RealEstatesType!
+  deleteRealEstate(input: DeleteRealEstateInputType!): RealEstatesType!
   createUser(input: CreateUserInputType!): UserType!
   updateUser(updateUserInput: UpdateUserInputType!): UserType!
   deleteUser(user_id: FindUserByIdInput!): UserType!
@@ -122,6 +130,31 @@ input UpdateCarInputType {
 
 input DeleteCarInputType {
   car_id: String!
+}
+
+input CreateRealEstateInputType {
+  real_estate_type: String!
+  bought_at: DateTime!
+  price: Float!
+  square_meters: Int!
+  city: String!
+  country: String!
+  user_id: String!
+}
+
+input UpdateRealEstateInputType {
+  user_id: String!
+  real_estate_id: String!
+  real_estate_type: String
+  bought_at: DateTime
+  price: Float
+  square_meters: Int
+  city: String
+  country: String
+}
+
+input DeleteRealEstateInputType {
+  real_estate_id: String!
 }
 
 input CreateUserInputType {
