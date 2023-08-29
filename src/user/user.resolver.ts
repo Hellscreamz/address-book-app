@@ -18,7 +18,7 @@ export class UserResolver {
   @Query(() => UserType)
   @UsePipes(new ValidationPipe())
   async findUserById(
-    @Args('findUserByIdInput') findUserByIdInput: FindUserByIdInput,
+    @Args('input') findUserByIdInput: FindUserByIdInput,
   ): Promise<UserType> {
     return this.userService.findUserById(findUserByIdInput);
   }
@@ -34,7 +34,7 @@ export class UserResolver {
   @Mutation(() => UserType)
   @UsePipes(new ValidationPipe())
   async updateUser(
-    @Args('updateUserInput') updateUserInput: UpdateUserInputType,
+    @Args('input') updateUserInput: UpdateUserInputType,
   ): Promise<UserType> {
     return this.userService.updateUser(updateUserInput);
   }
@@ -42,7 +42,7 @@ export class UserResolver {
   @Mutation(() => UserType)
   @UsePipes(new ValidationPipe())
   async deleteUser(
-    @Args('user_id') findUserByIdInput: FindUserByIdInput,
+    @Args('input') findUserByIdInput: FindUserByIdInput,
   ): Promise<UserType> {
     const deletedUser = await this.userService.deleteUser(findUserByIdInput);
     return deletedUser;

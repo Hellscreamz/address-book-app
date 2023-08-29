@@ -73,7 +73,7 @@ type Query {
   getAllRealEstates: [RealEstatesType!]!
   findRealEstateByUserId(input: FindRealEstateByUserIdInputType!): RealEstatesType!
   getAllUsers: [UserType!]!
-  findUserById(findUserByIdInput: FindUserByIdInput!): UserType!
+  findUserById(input: FindUserByIdInput!): UserType!
   getAllAddressBookEntries: [AddressBookType!]!
 }
 
